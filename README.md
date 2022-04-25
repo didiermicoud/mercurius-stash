@@ -21,7 +21,8 @@ query {
  	err2: resolverReturnOptional(code: 422)
 }
 ```
->Expected to return: HTTP 200, payload:
+
+>Expected to return: HTTP 200: ✅
 >- data for `ok`: ✅
 >- error for `err1`: ✅ 
 >- error for `err2`: ✅
@@ -35,7 +36,8 @@ query {
  	err2: resolverReturnRequired(code: 422)
 }
 ```
->Expected to return: HTTP 200, payload:
+
+>Expected to return: HTTP 200: ❌
 >- data for `ok`: ❌
 >- error for `err1`: ❌
 >- error for `err2`: ❌
@@ -59,7 +61,8 @@ query {
 	}
 }
 ```
-Expected to return: HTTP 200, payload:
+
+Expected to return: HTTP 200: ✅
 - data for `passAll`: ✅
 - partial data for `optionalFail`: ✅ 
 - null for `requiredFail`: ✅
