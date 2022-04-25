@@ -6,15 +6,14 @@ Simple server implementing query and type resolver to return optional / required
 
 ## Dev
 
-Start the sample server
+Install / Start the server
 
 ```
 npm install
 npm start
 ```
 
-## Sample queries
-
+## Root Query Resolver, optional return
 ```
 query {
 	ok: resolverReturnOptional(code: 200)
@@ -22,11 +21,13 @@ query {
  	err2: resolverReturnOptional(code: 422)
 }
 ```
-Expected to return:
-- data for `ok`: ✅
-- error for `err1`: ✅ 
-- error for `err2`: ✅
+>Expected to return: HTTP 200, payload:
+>- data for `ok`: ✅
+>- error for `err1`: ✅ 
+>- error for `err2`: ✅
 
+
+## Root Query Resolver: required return
 ```
 query {
 	ok: resolverReturnRequired(code: 200)
@@ -34,10 +35,13 @@ query {
  	err2: resolverReturnRequired(code: 422)
 }
 ```
-Expected to return 
-- data for `ok`: ❌
-- error for `err1`: ❌
-- error for `err2`: ❌
+>Expected to return: HTTP 200, payload:
+>- data for `ok`: ❌
+>- error for `err1`: ❌
+>- error for `err2`: ❌
+
+
+## Type Resolver: Required / Optional fields
 
 ```
 query {
@@ -55,7 +59,7 @@ query {
 	}
 }
 ```
-Expected to return:
+Expected to return: HTTP 200, payload:
 - data for `passAll`: ✅
 - partial data for `optionalFail`: ✅ 
 - null for `requiredFail`: ✅
